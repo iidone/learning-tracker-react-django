@@ -1,6 +1,7 @@
 
 /locale_settings.py
 /backend/locale_settings.py
+/backend/learningtracker/learningtracker/locale_settings.py
 */locale_settings.py
 *.py[co]
 
