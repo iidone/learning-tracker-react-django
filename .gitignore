@@ -1,2 +1,14 @@
 
-.locale_settings
+/locale_settings.py
+/backend/locale_settings.py
+*/locale_settings.py
+*.py[co]
+
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.DS_Store
+.env
+.env.local
