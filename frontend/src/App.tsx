@@ -1,24 +1,46 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from 'react';
+
+interface Users {
+  id: number;
+  username: string;
+  name: string;
+  last_name: string;
+  created_at: string;
+}
 
 function App() {
+  const [items, setItems] = useState<Users[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/users/')
+      .then(response => response.json())
+      .then(data => {
+        setItems(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Список элементов</h1>
+      <ul>
+        {items.map(item => (
+          <li key={item.id}>
+            <h2>{item.username} </h2>
+            <p>{item.name}</p>
+            <p>{item.last_name}</p>
+            <p>Создан {item.created_at}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
