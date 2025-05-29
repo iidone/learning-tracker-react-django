@@ -1,7 +1,7 @@
 
 # Stack:
 
-1. FastAPI
+1. Django
 
 2. React
 
